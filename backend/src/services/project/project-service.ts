@@ -269,8 +269,7 @@ export const projectServiceFactory = ({
           members: [
             {
               userPublicKey: user.publicKey,
-              orgMembershipId: orgMembership.id,
-              projectMembershipRole: ProjectMembershipRole.Admin
+              orgMembershipId: orgMembership.id
             }
           ]
         });
@@ -284,7 +283,7 @@ export const projectServiceFactory = ({
           tx
         );
         await projectUserMembershipRoleDAL.create(
-          { projectMembershipId: userProjectMembership.id, role: projectAdmin.projectRole },
+          { projectMembershipId: userProjectMembership.id, role: ProjectMembershipRole.Admin },
           tx
         );
 
