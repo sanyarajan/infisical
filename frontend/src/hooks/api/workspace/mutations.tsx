@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { apiRequest } from "@app/config/request";
 
-import { workspaceKeys } from "./queries";
+import { workspaceKeys } from "./query-keys";
 import { TUpdateWorkspaceGroupRoleDTO } from "./types";
 
 export const useAddGroupToWorkspace = () => {
