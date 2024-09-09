@@ -4,7 +4,7 @@ import { apiRequest } from "@app/config/request";
 
 import { Actor, AuditLog, AuditLogFilters } from "./types";
 
-export const workspaceKeys = {
+export const auditLogKeys = {
   getAuditLogs: (workspaceId: string, filters: AuditLogFilters) =>
     [{ workspaceId, filters }, "audit-logs"] as const,
   getAuditLogActorFilterOpts: (workspaceId: string) =>
@@ -13,7 +13,7 @@ export const workspaceKeys = {
 
 export const useGetAuditLogs = (workspaceId: string, filters: AuditLogFilters) => {
   return useInfiniteQuery({
-    queryKey: workspaceKeys.getAuditLogs(workspaceId, filters),
+    queryKey: auditLogKeys.getAuditLogs(workspaceId, filters),
     queryFn: async ({ pageParam }) => {
       const { data } = await apiRequest.get<{ auditLogs: AuditLog[] }>(
         `/api/v1/workspace/${workspaceId}/audit-logs`,
@@ -35,7 +35,7 @@ export const useGetAuditLogs = (workspaceId: string, filters: AuditLogFilters) =
 
 export const useGetAuditLogActorFilterOpts = (workspaceId: string) => {
   return useQuery({
-    queryKey: workspaceKeys.getAuditLogActorFilterOpts(workspaceId),
+    queryKey: auditLogKeys.getAuditLogActorFilterOpts(workspaceId),
     queryFn: async () => {
       const { data } = await apiRequest.get<{ actors: Actor[] }>(
         `/api/v1/workspace/${workspaceId}/audit-logs/filters/actors`
